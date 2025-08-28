@@ -3,12 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Bestellung Handtuchrollen</title>
-  <!--
-    Die Seite ist so gestaltet, dass sie auf Mobilgeräten und Desktops ohne Scrollen korrekt angezeigt wird.
-    Das Hauptlayout nutzt Flexbox, um den Inhalt vertikal und horizontal zu zentrieren.
-    Ein blauer Kreis wird in der Mitte des Bildschirms angezeigt, darunter der Status‑Text.
-    Mit dem Viewport‑Meta‑Tag stellen wir sicher, dass die Seite auf Smartphones skaliert wird.
-  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* Grundlegende Formatierung für den gesamten Bildschirm */
@@ -119,8 +113,6 @@
     )
       .then((res) => {
         if (res.ok) {
-          // Verwende für alle Statusmeldungen die Klasse "status".
-          // Die Meldung wird ohne Icon dargestellt, um ein konsistentes Erscheinungsbild zu gewährleisten.
           document.getElementById('msg').innerHTML = `<span class="status">Danke dir!</span><br><span class="paragraph">Eine neue Handtuchrolle wurde angefragt.</span>`;
         } else {
           document.getElementById('msg').innerHTML = `<span class="status">Fehler bei der Anfrage</span><br><span class="paragraph">Wende dich an die Verwaltung</span>`;
