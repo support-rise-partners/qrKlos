@@ -16,7 +16,7 @@
       margin: 0;
       padding: 0 50px 0px 50px;
       font-family: sans-serif;
-      height: 90vh;
+      height: 80vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -120,7 +120,7 @@
         if (res.ok) {
           // Verwende für alle Statusmeldungen die Klasse "status".
           // Die Meldung wird ohne Icon dargestellt, um ein konsistentes Erscheinungsbild zu gewährleisten.
-          document.getElementById('msg').innerHTML = `<span class="status">Handtuchrollen wurden angefragt</span>`;
+          document.getElementById('msg').innerHTML = `<span class="status">Danke dir!</span><br><span class="paragraph">Handtuchrolle wurde angefragt</span>`;
         } else {
           document.getElementById('msg').innerHTML = `<span class="status">Fehler bei der Anfrage</span><br><span class="paragraph">Wende dich an die Verwaltung</span>`;
         }
@@ -133,7 +133,7 @@
   <script>
     setTimeout(() => {
       window.close();
-    }, 10000);
+    }, 60000);
   </script>
 </body>
 </html>
