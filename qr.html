@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>Bestellung Handtuchrollen</title>
+  <!--
+    Die Seite ist so gestaltet, dass sie auf Mobilgeräten und Desktops ohne Scrollen korrekt angezeigt wird.
+    Das Hauptlayout nutzt Flexbox, um den Inhalt vertikal und horizontal zu zentrieren.
+    Ein blauer Kreis wird in der Mitte des Bildschirms angezeigt, darunter der Status‑Text.
+    Mit dem Viewport‑Meta‑Tag stellen wir sicher, dass die Seite auf Smartphones skaliert wird.
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* Grundlegende Formatierung für den gesamten Bildschirm */
     body {
       margin: 0;
-      padding: 0 20px 0px 20px;
+      padding: 0 50px 0px 50px;
       font-family: sans-serif;
-      height: 80vh;
+      height: 90vh;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -23,7 +29,6 @@
     /* Statusnachricht */
     #msg {
       font-size: 22px;
-      z-index: 9999;
     }
 
     /* Stil und Animation für den Status‑Text */
@@ -102,7 +107,7 @@
 
     // HTTP‑Anfrage an Power Automate senden
     fetch(
-      "https://prod-18.germanywestcentral.logic.azure.com:443/workflows/0fc9e4ec9742415a88c192771ddea218/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=neF5FzGafqjZRklozzxQMawI9PHv-z9Ac-vu7vIuAhw",
+      "https://defaultf70052617df14a29b0f88bb1e67576.23.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/0fc9e4ec9742415a88c192771ddea218/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JgnE7pIuY25wfBobYWwOIWbWV54_Y7GtiWfhVtUUR2g",
       {
         method: 'POST',
         headers: {
@@ -113,7 +118,9 @@
     )
       .then((res) => {
         if (res.ok) {
-          document.getElementById('msg').innerHTML = `<span class="status">Danke dir!</span><br><span class="paragraph">Eine neue Handtuchrolle wurde angefragt.</span>`;
+          // Verwende für alle Statusmeldungen die Klasse "status".
+          // Die Meldung wird ohne Icon dargestellt, um ein konsistentes Erscheinungsbild zu gewährleisten.
+          document.getElementById('msg').innerHTML = `<span class="status">Handtuchrollen wurden angefragt</span>`;
         } else {
           document.getElementById('msg').innerHTML = `<span class="status">Fehler bei der Anfrage</span><br><span class="paragraph">Wende dich an die Verwaltung</span>`;
         }
@@ -126,7 +133,7 @@
   <script>
     setTimeout(() => {
       window.close();
-    }, 20000);
+    }, 10000);
   </script>
 </body>
 </html>
