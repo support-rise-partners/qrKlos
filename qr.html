@@ -80,22 +80,48 @@
   </div>
   <script src="https://unpkg.com/@rive-app/canvas@2.7.0"></script>
   <script>
-    const canvas = document.getElementById('riveCanvas');
+  const canvas = document.getElementById('riveCanvas');
 
-    fetch('risy1.riv')
-      .then(res => res.arrayBuffer())
-      .then(buffer => {
-        new rive.Rive({
-          buffer: buffer,
-          canvas: canvas,
-          autoplay: true,
-          stateMachines: ['State Machine 1'],
-          onLoad: () => {
-            console.log('State Machine gestartet');
-          },
-        });
+  function setupHiDPI() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const SCALE = 1.8;
+
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+
+    canvas.width = Math.round(rect.width * SCALE * dpr);
+    canvas.height = Math.round(rect.height * SCALE * dpr);
+  }
+
+  setupHiDPI();
+
+  let riveInstance = null;
+
+  fetch('risy1.riv')
+    .then(res => res.arrayBuffer())
+    .then(buffer => {
+      riveInstance = new rive.Rive({
+        buffer: buffer,
+        canvas: canvas,
+        autoplay: true,
+        stateMachines: ['State Machine 1'],
+        onLoad: () => {
+          if (riveInstance && typeof riveInstance.resizeDrawingSurfaceToCanvas === 'function') {
+            riveInstance.resizeDrawingSurfaceToCanvas();
+          }
+          console.log('State Machine gestartet');
+        },
       });
-  </script>
+    });
+
+  window.addEventListener('resize', () => {
+    setupHiDPI();
+    if (riveInstance && typeof riveInstance.resizeDrawingSurfaceToCanvas === 'function') {
+      riveInstance.resizeDrawingSurfaceToCanvas();
+    }
+  });
+</script>
   <!-- Statusnachricht -->
   <div id="msg"><span class="status">Anfrage wird gesendet...</span></div>
 
