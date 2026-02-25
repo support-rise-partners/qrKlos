@@ -82,6 +82,7 @@
   <script>
   const canvas = document.getElementById('riveCanvas');
 
+  /*
   function setupHiDPI() {
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
@@ -93,8 +94,9 @@
     canvas.width = Math.round(rect.width * SCALE * dpr);
     canvas.height = Math.round(rect.height * SCALE * dpr);
   }
+  */
 
-  setupHiDPI();
+  // setupHiDPI();
 
   let riveInstance = null;
 
@@ -115,12 +117,14 @@
       });
     });
 
+  /*
   window.addEventListener('resize', () => {
     setupHiDPI();
     if (riveInstance && typeof riveInstance.resizeDrawingSurfaceToCanvas === 'function') {
       riveInstance.resizeDrawingSurfaceToCanvas();
     }
   });
+  */
 </script>
   <!-- Statusnachricht -->
   <div id="msg"><span class="status">Anfrage wird gesendet...</span></div>
