@@ -98,14 +98,14 @@
 
   let riveInstance = null;
 
-  fetch('risy1.riv')
+  fetch('risy2.riv')
     .then(res => res.arrayBuffer())
     .then(buffer => {
       riveInstance = new rive.Rive({
         buffer: buffer,
         canvas: canvas,
         autoplay: true,
-        stateMachines: ['State Machine 1'],
+        stateMachines: ['State Machine 2'],
         onLoad: () => {
           if (riveInstance && typeof riveInstance.resizeDrawingSurfaceToCanvas === 'function') {
             riveInstance.resizeDrawingSurfaceToCanvas();
